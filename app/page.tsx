@@ -1,16 +1,26 @@
-import { Button } from "@/components/ui/button";
-import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
-import FlashcardComponent from "@/components/ui/flashcard";
+'use client'
 
-export default function Home() {
+import React, { useState } from 'react';
+import FlashcardComponent from '@/components/ui/FlashcardComponent';
+
+const flashcards = [
+  { front: 'Question 1', back: 'Answer 1' },
+  { front: 'Question 2', back: 'Answer 2' },
+  { front: 'Question 3', back: 'Answer 3' },
+  // Add more flashcards here
+];
+
+export default function FlashcardDeck() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
   return (
-    <main className="flex flex-col h-screen overflow-hidden "> 
-      <div className="shrink-0">
-        <h1 className="text-xl m-4">DoceoDecks</h1> 
-      </div>
-      <div className="flex-grow flex items-center justify-center">
-        <FlashcardComponent flashcard={{front: "porto", back: "i carry" }} />
-      </div>
-   </main>
+    <div>
+      <FlashcardComponent
+        flashcard={flashcards[currentIndex]}
+        flashcards={flashcards}
+        currentIndex={currentIndex}
+        setCurrentIndex={setCurrentIndex}
+      />
+    </div>
   );
 }
